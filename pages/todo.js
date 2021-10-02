@@ -72,8 +72,7 @@ const deleteTodo = (t) => {
 
 
 return ( 
-  <Flex flexDir="column" maxW={800} align="center" justify="center" minH="100vh" m="auto" px
-    {4}>
+  <Flex flexDir="column" maxW={800} align="center" justify="center" minH="100vh" m="auto" px={4}>
     <Flex justify="space-between" w="100%" align="center">
         <Heading mb={4}>Welcome, {AuthUser.email}!</Heading>
         <Flex>
@@ -123,7 +122,12 @@ return (
   )
 }
 
-export const getServerSideProps = withAuthUserTokenSSR({
+export const getServerSideProps = withAuthUserTokenSSR()
+
+export default withAuthUser()(Todo)
+
+
+/*export const getServerSideProps = withAuthUserTokenSSR({
   whenAuthed: AuthAction.REDIRECT_TO_LOGIN,
 })(async ({AuthUser, req}) => {
   // Optionally, get other props
@@ -141,7 +145,7 @@ export const getServerSideProps = withAuthUserTokenSSR({
   const data = await response.json()
   if (!response.ok) {
     throw new Error(
-      `Data fetching faile with status ${response.status}: $(JSON.stringify(
+      `Data fetching failed with status ${response.status}: $(JSON.stringify(
         data
       )}`
     )
@@ -151,9 +155,9 @@ export const getServerSideProps = withAuthUserTokenSSR({
       favoriteColor: data.favoriteColor,
     },
   }
-})
+})*/
 
-export default withAuthUser({
+/*export default withAuthUser({
   whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
   whenUnauthedBeforeInit: AuthAction.REDIRECT_TO_LOGIN
-})(Todo)
+})(Todo)*/
