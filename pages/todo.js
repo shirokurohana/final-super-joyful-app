@@ -41,7 +41,7 @@ const Todo = () => {
                 })
     })
 
-  const sendData = () => {
+const sendData = () => {
         try {
             // try to update doc
             firebase
@@ -57,11 +57,29 @@ const Todo = () => {
             console.log(error)
         }
     }
+const deleteTodo = (t) => {
+        try {
+            firebase
+                .firestore()
+                .collection(AuthUser.id)
+                .doc(t)
+                .delete()
+                .then(console.log('Data was successfully deleted!'))
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
-  return ( <Flex flexDir="column" maxW={800} align="center" justify="center" minH="100vh" m="auto" px={4}>
+
+return ( 
+  <Flex flexDir="column" maxW={800} align="center" justify="center" minH="100vh" m="auto" px
+    {4}>
     <Flex justify="space-between" w="100%" align="center">
         <Heading mb={4}>Welcome, {AuthUser.email}!</Heading>
-        <IconButton ml={2} onClick={AuthUser.signOut} icon={<StarIcon />} />
+        <Flex>
+          <DarkModeSwitch />
+          <IconButton ml={2} onClick={AuthUser.signOut} icon={<StarIcon />} />
+        </Flex>
     </Flex>
 
        <InputGroup>
@@ -98,11 +116,44 @@ const Todo = () => {
                         </Flex>
                     </>
                 )
+      })}
 
-</Flex>
+
+  </Flex>
   )
 }
 
-export const getServerSideProps = withAuthUserTokenSSR()
+export const getServerSideProps = withAuthUserTokenSSR({
+  whenAuthed: AuthAction.REDIRECT_TO_LOGIN,
+})(async ({AuthUser, req}) => {
+  // Optionally, get other props
+  // You can return anything you'd normally return from
+  // `getServerSideProps`, including redirects
+  // https://nextjs.org/docs/basic-features/data-fetch#getserverssideprops-server-side-rendering
+  const token = await AuthUser.getIdToken()
+  const endpoint = getAbsoluteURL('/api/example', req)
+  const response = await fetch(endpoint, {
+    method: 'GET',
+    headers: {
+      Authorization: token || 'unauthenticated',
+    },
+  })
+  const data = await response.json()
+  if (!response.ok) {
+    throw new Error(
+      `Data fetching faile with status ${response.status}: $(JSON.stringify(
+        data
+      )}`
+    )
+  }
+  return {
+    props: {
+      favoriteColor: data.favoriteColor,
+    },
+  }
+})
 
-export default withAuthUser()(Todo)
+export default withAuthUser({
+  whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
+  whenUnauthedBeforeInit: AuthAction.REDIRECT_TO_LOGIN
+})(Todo)
