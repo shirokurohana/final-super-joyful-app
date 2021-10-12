@@ -22,23 +22,33 @@ import { AddIcon, DeleteIcon, StarIcon } from "@chakra-ui/icons"
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 
-const Todo = () => {
+const Event = () => {
     const AuthUser = useAuthUser()
-    const [input, setInput] = useState('')
-    const [todos, setTodos] = useState([])
-
-    // console.log(AuthUser)
-    // console.log(todos)
+    const [inputName, setInputName] = useState('')
+    const [inputDate, setInputDate] = useState('')
+    const [events, setEvents] = useState([])
 
     useEffect(() => {
         AuthUser.id &&
             firebase
                 .firestore()
-                .collection(AuthUser.id)
-                .orderBy('timestamp', 'desc')
-                .onSnapshot(snapshot => {
-                    setTodos(snapshot.docs.map(doc => doc.data().todo))
-                })
+                .collection("my_events")
+                .where('user', '==', AuthUser.id)
+                .onSnapshot(
+                  snapshot => {
+                    setEvents(snapshot.docs.map(
+                      doc => {
+                        return {
+                          eventID: doc.id, 
+                          eventName: doc.data().name,
+                          eventDate: doc.data().date.toDate().toDateString()
+                        }
+                      }
+                      
+                )
+    );
+                  }
+                )
     })
 
     const sendData = () => {
@@ -46,26 +56,32 @@ const Todo = () => {
             // try to update doc
             firebase
                 .firestore()
-                .collection(AuthUser.id) // each user will have their own collection
-                .doc(input) // set the collection name to the input so that we can easily delete it later on
-                .set({
-                    todo: input,
+                .collection("my_events") // all users will share one collection 
+                .add({
+                    name: inputName,
+                    date: firebase.firestore.Timestamp.fromDate( new Date(inputDate) ),
                     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    user: AuthUser.id
                 })
-                .then(console.log('Data was successfully sent to cloud firestore!'))
+                .then(console.log('Data was successfully sent to the Firestore! Praise the Lord!'));
+              // flesh out user-entered values in the input elements 
+              setInputName('');
+              setInputDate('');
+                
+
         } catch (error) {
             console.log(error)
         }
     }
 
-    const deleteTodo = (t) => {
+    const deleteEvent = (t) => {
         try {
             firebase
                 .firestore()
-                .collection(AuthUser.id)
+                .collection("my_events")
                 .doc(t)
                 .delete()
-                .then(console.log('Data was successfully deleted!'))
+                .then(console.log('Data was successfully deleted! Praise the Lord!'))
         } catch (error) {
             console.log(error)
         }
@@ -86,16 +102,17 @@ const Todo = () => {
                     pointerEvents="none"
                     children={<AddIcon color="gray.300" />}
                 />
-                <Input type="text" onChange={(e) => setInput(e.target.value)} placeholder="Learn CS 55.13 with Professor Wilde!" />
+                <Input type="text" value={inputName} onChange={(e) => setInputName(e.target.value)} placeholder="What's da event?" />
+                <Input type="date" value={inputDate} onChange={(e) => setInputDate(e.target.value)} placeholder="When's da event?" />
                 <Button
-                    ml={2}
+                    ml={12}
                     onClick={() => sendData()}
                 >
-                    Add Todo
+                    Add here!
                 </Button>
             </InputGroup>
 
-            {todos.map((t, i) => {
+            {events.map((item, i) => {
                 return (
                     <React.Fragment  key={i}>
                         {i > 0 && <Divider />}
@@ -109,9 +126,10 @@ const Todo = () => {
                         >
                             <Flex align="center">
                                 <Text fontSize="xl" mr={4}>{i + 1}.</Text>
-                                <Text>{t}</Text>
+                                <Text>{item.eventName} - </Text>
+                                <Text>{item.eventDate}</Text>
                             </Flex>
-                            <IconButton onClick={() => deleteTodo(t)} icon={<DeleteIcon />} />
+                            <IconButton onClick={() => deleteEvent(item.eventID)} icon={<DeleteIcon />} />
                         </Flex>
                     </React.Fragment>
                 )
@@ -133,4 +151,4 @@ export const getServerSideProps = withAuthUserTokenSSR({
 export default withAuthUser({
     whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
     whenUnauthedBeforeInit: AuthAction.REDIRECT_TO_LOGIN,
-})(Todo)
+})(Event)

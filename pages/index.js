@@ -23,14 +23,14 @@ const Demo = () => {
       <Header email={AuthUser.email} signOut={AuthUser.signOut} />
       <div style={styles.content}>
         <div style={styles.infoTextContainer}>
-          <h1>The Joy App</h1>
-          <h3> Create your todos joyfully today!</h3>
+          <h1>The Joyful Event App</h1>
+          <h3> Schedule your events joyfully today!</h3>
           <p>
             Choose which link login below to login in!
           </p>
           <p>
           </p>
-          <a href="/todo" style={{ fontSize: "40px", textDecoration: 'underline' }}>Add a todo!</a>
+          <a href="/event" style={{ fontSize: "40px" }}>Add a event!</a>
         </div>
         <DemoPageLinks />
       </div>
