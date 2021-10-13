@@ -24,7 +24,7 @@ export const getServerSideProps = withAuthUserTokenSSR ({
   async ({ AuthUser, params }) => {
     // take this is id parameter from the url and construct a db query with it
     const db = getFirebaseAdmin().firestore();
-    const doc = await db.collection("events").doc(params.id).get();
+    const doc = await db.collection("my_events").doc(params.id).get();
     let itemData;
     if (!doc.empty) {
       let docData = doc.data();
