@@ -1,11 +1,11 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
-import { userAuthUser, withAuthUser, withAuthUserTokenSSR, AuthAction } from 'next-firebase-auth';
+import { useAuthUser, withAuthUser, withAuthUserTokenSSR, AuthAction } from 'next-firebase-auth';
 import { getFirebaseAdmin } from 'next-firebase-auth';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 const SingleEvent = ({itemData}) => {
-  const AuthUser = userAuthUser();
+  const AuthUser = useAuthUser();
   return (
     <>
       <Flex>
