@@ -50,3 +50,5 @@ export default withAuthUser({
     whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
     whenUnauthedBeforeInit: AuthAction.REDIRECT_TO_LOGIN
   })(SingleEvent)
+
+  // Thank you Professor for your tutorial!
