@@ -20,6 +20,8 @@ import {
   ListItem,
   Stack
 } from "@chakra-ui/react"
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 import Header from '../components/Header'
 import DemoPageLinks from '../components/DemoPageLinks'
 import { TimeIcon, PhoneIcon, CalendarIcon, StarIcon, CloseIcon, LockIcon, UnlockIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
