@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 import {
     Flex,
     Heading,
@@ -19,8 +21,7 @@ import {
 } from 'next-firebase-auth'
 import getAbsoluteURL from '../utils/getAbsoluteURL'
 import { AddIcon, DeleteIcon, StarIcon } from "@chakra-ui/icons"
-import firebase from 'firebase/app'
-import 'firebase/firestore'
+
 
 const Todo = () => {
     const AuthUser = useAuthUser()
