@@ -4,8 +4,25 @@ import {
   withAuthUser,
   withAuthUserTokenSSR,
 } from 'next-firebase-auth'
+import {
+  Container,
+  Flex,
+  Heading,
+  Link,
+  InputGroup,
+  InputLeftElement,
+  Input,
+  Button,
+  Text,
+  IconButton,
+  Divider,
+  List,
+  ListItem,
+  Stack
+} from "@chakra-ui/react"
 import Header from '../components/Header'
 import DemoPageLinks from '../components/DemoPageLinks'
+import { TimeIcon, PhoneIcon, CalendarIcon, StarIcon, CloseIcon, LockIcon, UnlockIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
 
 const styles = {
   content: {
@@ -13,31 +30,77 @@ const styles = {
   },
   infoTextContainer: {
     marginBottom: 32,
-  },
+  }
 }
 
 const Demo = () => {
   const AuthUser = useAuthUser()
   return (
-    <div>
+    <div className="background">
       <Header email={AuthUser.email} signOut={AuthUser.signOut} />
       <div style={styles.content}>
         <div style={styles.infoTextContainer}>
-          <h1 style={{ fontSize: "40px" }}>The Joyful Event App </h1>
-          <h3> Schedule your events joyfully today!</h3>
-          <p>
-            Choose which link login below to login in!
-          </p>
-          <p>
-          </p>
-          <p> 
-            <a href="/event" style={{ fontSize: "20px" }}>Add an event!</a>
-          </p>
-          <p>
-            <a href="/todo" style={{ fontSize: "20px" }}>Add a todo!</a>
-          </p>
+          <Heading style={{ fontSize: "40px" }} bgGradient="linear(to-r, #575aff, #c7f8ff)"
+                                    bgClip="text">The Super Joyful App </Heading>
+          <h3 spacing={2} style={{ marginBottom: "10px" }}> Schedule your events, add your daily todos, and add your contacts joyfully today!</h3>
+          
+          <p >
+          <Link href="/event" textDecoration="none">
+          <a>
+          <Button leftIcon={<CalendarIcon />} color="white"
+            fontWeight="bold"
+            py={17}
+            variant="outline"
+            
+            borderRadius="md"
+            bgGradient="linear(to-r, #575aff, #575aff)"
+            _hover={{
+              bgGradient: "linear(to-r, #c7f8ff, #c77cc)",
+            }}  >
+          Add an event!
+        </Button>
+
+          </a>
+        </Link>
+        </p>
+        <p>
+        <Link href="/todo" textDecoration="none">
+          <a>
+          <Button leftIcon={<StarIcon />} color="white"
+            fontWeight="bold"
+            variant="outline"
+            py={17}
+            borderRadius="md"
+            textDecoration="none"
+            bgGradient="linear(to-r, #575aff, #575aff)"
+            _hover={{
+              bgGradient: "linear(to-r, #c7f8ff, #c77cc)",
+            }}  >
+          Add a todo!
+        </Button>
+          </a>
+        </Link>
+        </p>
+   
+        <p>
+        <Link href="/contacts" textDecoration="none">
+          <a>
+          <Button leftIcon={<PhoneIcon />} color="white"
+            fontWeight="bold"
+            variant="outline"
+            borderRadius="md"
+            textDecoration="none"
+            py={17}
+            bgGradient="linear(to-r, #575aff, #575aff)"
+            _hover={{
+              bgGradient: "linear(to-r, #c7f8ff, #c77cc)",
+            }}  >
+          Add a contact!
+        </Button>
+          </a>
+        </Link>
+        </p>
         </div>
-        <DemoPageLinks />
       </div>
     </div>
   )

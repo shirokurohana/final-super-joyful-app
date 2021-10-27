@@ -1,5 +1,24 @@
 import React from 'react'
 import Link from 'next/link'
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuIcon,
+  MenuCommand,
+  MenuDivider,
+  useBreakpointValue,
+  Button,
+  Stack,
+  Text,
+  Flex
+} from "@chakra-ui/react"
+
+import { CloseIcon, LockIcon, UnlockIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
 
 const nfaDependencyVersion =
   require('../package.json').dependencies['next-firebase-auth']
@@ -10,53 +29,93 @@ const firebaseDependencyVersion =
 const styles = {
   container: {
     display: 'flex',
-    justifyContent: 'flex-end',
     alignItems: 'center',
     padding: 16,
   },
   versionsContainer: {
     marginLeft: 0,
     marginRight: 'auto',
-  },
-  button: {
-    marginLeft: 16,
-    cursor: 'pointer',
-  },
+  }
+  
 }
 
 const Header = ({ email, signOut }) => (
-  <div style={styles.container}>
+  <Stack style={styles.container}  direction={{base: 'column', md: 'row'}}>
     <div style={styles.versionsContainer}>
-      <div>v{nfaDependencyVersion}</div>
-      <div>Next.js v{nextDependencyVersion}</div>
-      <div>Firebase v{firebaseDependencyVersion}</div>
+    <Menu isLazy>
+    <MenuButton 
+       color="white"
+            fontWeight="bold"
+            variant="outline"
+            borderRadius="md"
+            fontSize="32px"
+            bgGradient="linear(to-r, #575aff, #c7f8ff)"
+            _hover={{
+              bgGradient: "linear(to-r, #c7f8ff, #c77cc)",
+            }}  >Open me!</MenuButton>
+      <MenuList>
+      {/* MenuItems are not rendered unless Menu is open */}
+        <MenuItem>
+          <a href="/">Go Home</a>
+        </MenuItem>
+        <MenuItem>
+          <a href="/todo">Create Todo</a>
+        </MenuItem>
+        <MenuItem>
+          <a href="/event">Create Event</a>
+        </MenuItem>
+        <MenuItem>
+          <a href="/contacts">Create Contact</a>
+        </MenuItem>
+      </MenuList>
+      </Menu>
+      
+      
+
+        <Text fontWeight="bold">Thank you to Jesus</Text>
+        <Text>Thank you to Professor for the awesome tutorials</Text>
+        <Text>Thank you everyone in the Support Discussions</Text>
+      
     </div>
+    
     {email ? (
       <>
-        <p>Signed in as {email}</p>
-        <button
-          type="button"
-          onClick={() => {
+        <p style={{ paddingRight: "10px"}} >Welcome, <span style={{ color: "#575aff"}}> {email} </span></p>
+        <Button onClick={() => {
             signOut()
-          }}
-          style={styles.button}
-        >
+          }} leftIcon={<UnlockIcon />} color="white"
+            fontWeight="bold"
+            variant="outline"
+            borderRadius="md"
+            bgGradient="linear(to-r, #575aff, #c7f8ff)"
+            _hover={{
+              bgGradient: "linear(to-r, #c7f8ff, #c77cc)",
+            }}  >
           Sign out
-        </button>
+        </Button>
+        
+        
       </>
     ) : (
       <>
-        <p>You are not signed in.</p>
+        <p>Sorry there, you're not signed in.</p>
         <Link href="/auth">
           <a>
-            <button type="button" style={styles.button}>
-              Sign in
-            </button>
+          <Button leftIcon={<LockIcon />} color="white"
+            fontWeight="bold"
+            variant="outline"
+            borderRadius="md"
+            bgGradient="linear(to-r, #575aff, #c7f8ff)"
+            _hover={{
+              bgGradient: "linear(to-r, #c7f8ff, #c77cc)",
+            }}  >
+          Sign in
+        </Button>
           </a>
         </Link>
       </>
     )}
-  </div>
+  </Stack>
 )
 
 export default Header

@@ -18,18 +18,20 @@ const styles = {
 }
 
 const Auth = () => (
-  <div style={styles.content}>
-    <h3>Sign in</h3>
-    <div style={styles.textContainer}>
-      <p>
-        This auth page is <b>not</b> static. It will server-side redirect to the
-        app if the user is already authenticated.
-      </p>
+    <div className="background">
+      <div style={styles.content}>
+        <h3>Sign in</h3>
+        <div style={styles.textContainer}>
+          <p>
+            Welcome to The Super Joyful App! Please sign in below 
+          </p>
+        </div>
+        <div>
+          <FirebaseAuth />
+        </div>
+      </div>
     </div>
-    <div>
-      <FirebaseAuth />
-    </div>
-  </div>
+  
 )
 
 export const getServerSideProps = withAuthUserTokenSSR({
