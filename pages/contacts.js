@@ -200,8 +200,8 @@ const Contact = () => {
                               </List>
                                  
                                     
-                                <Stack spacing={4} direction="row">
-
+                              <Stack width={{base: 'auto', sm: 'auto', md: 'auto'}}  pb={7} justifyContent="space-between"  spacing={4} direction={{base: 'column', md: 'row', sm:'column'}} alignItems="center">
+                
                                 <Popover>
                                       <PopoverTrigger>
                                         <Button>Click Me!</Button>
@@ -217,7 +217,7 @@ const Contact = () => {
                                           <PopoverCloseButton />
                                           <PopoverBody>
                                             <Link href="tel:+" textDecoration="none">
-                                          <a>
+                                         
                                           <Button leftIcon={<PhoneIcon />} color="white"
                                             fontWeight="bold"
                                             variant="outline"
@@ -230,7 +230,7 @@ const Contact = () => {
                                             }}  >
                                           Call me
                                         </Button>
-                                          </a>
+                                       
                                         </Link>
                                           </PopoverBody>
                                           <PopoverFooter>copyright 2021</PopoverFooter>

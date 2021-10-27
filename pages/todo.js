@@ -173,11 +173,8 @@ const Todo = () => {
 
  
 
-            <InputGroup width={{base: 'auto', sm: 'auto', md: 'auto'}}>
-                <InputLeftElement
-                    pointerEvents="none"
-                    style={{ verticalAlign: "middle"}} children={<AddIcon color="gray.300" />}
-                />
+              <Stack width={{base: 'auto', sm: 'auto', md: 'auto'}}  pb={7} justifyContent="space-between"  spacing={4} direction={{base: 'column', md: 'row', sm:'column'}} alignItems="center">
+              <AddIcon color="gray.300" />
                 <Input fontSize={{ base: "18px", md: "20px", lg: "30px" }} variant="flushed" type="first_name" value={inputTodo} onChange={(e) => setTodo(e.target.value)} placeholder="What's the todo?" />
                 <Button
                     ml={12}
@@ -185,7 +182,7 @@ const Todo = () => {
                 >
                     Add!
                 </Button>
-            </InputGroup>
+            </Stack>
 
             {todos.map((item, i) => {
                 return (

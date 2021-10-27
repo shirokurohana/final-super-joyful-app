@@ -129,11 +129,8 @@ const Event = () => {
   
    
   
-              <InputGroup width={{base: 'auto', sm: 'auto', md: 'auto'}} pb={7} >
-                  <InputLeftElement
-                      pointerEvents="none"
-                      style={{ verticalAlign: "middle"}} children={<AddIcon color="gray.300" />}
-                  />
+                <Stack width={{base: 'auto', sm: 'auto', md: 'auto'}}  pb={7} justifyContent="space-between"  spacing={4} direction={{base: 'column', md: 'row', sm:'column'}} alignItems="center">
+                <AddIcon color="gray.300" />
                   <Input fontSize={{ base: "18px", md: "20px", lg: "30px" }} variant="flushed" type="first_name" value={inputName} onChange={(e) => setInputName(e.target.value)} placeholder="What's the event?" />
                   <Input variant="flushed" type="date" value={inputDate} onChange={(e) => setInputDate(e.target.value)} placeholder="When's da date?" style={{ marginLeft: '.5rem' }}/>
                   <Button
@@ -142,7 +139,7 @@ const Event = () => {
                   >
                       Add!
                   </Button>
-              </InputGroup>
+              </Stack>
   
               {events.map((item, i) => {
                   return (
