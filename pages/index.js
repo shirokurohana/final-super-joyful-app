@@ -48,7 +48,7 @@ const Demo = () => {
           
           <p >
           <Link href="/event" textDecoration="none">
-          <a>
+
           <Button leftIcon={<CalendarIcon />} color="white"
             fontWeight="bold"
             py={17}
@@ -62,12 +62,12 @@ const Demo = () => {
           Add an event!
         </Button>
 
-          </a>
+       
         </Link>
         </p>
         <p>
         <Link href="/todo" textDecoration="none">
-          <a>
+
           <Button leftIcon={<StarIcon />} color="white"
             fontWeight="bold"
             variant="outline"
@@ -80,13 +80,13 @@ const Demo = () => {
             }}  >
           Add a todo!
         </Button>
-          </a>
+  
         </Link>
         </p>
    
         <p>
         <Link href="/contacts" textDecoration="none">
-          <a>
+
           <Button leftIcon={<PhoneIcon />} color="white"
             fontWeight="bold"
             variant="outline"
@@ -99,7 +99,7 @@ const Demo = () => {
             }}  >
           Add a contact!
         </Button>
-          </a>
+
         </Link>
         </p>
         </div>

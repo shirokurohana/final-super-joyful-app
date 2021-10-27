@@ -168,7 +168,7 @@ const Event = () => {
                               <Stack spacing={4} ml={7} direction="row">
                                 <IconButton onClick={() => updateEvent(item.eventID)} icon={<EditIcon />} />
                               
-                                <IconButton  ml={2} oonClick={() => deleteEvent(item.eventID)} icon={<DeleteIcon />} />
+                                <IconButton  ml={2} onClick={() => deleteEvent(item.eventID)} icon={<DeleteIcon />} />
                               </Stack>
                           </Flex>
                           </Flex>

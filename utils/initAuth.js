@@ -2,6 +2,7 @@
 import { init } from 'next-firebase-auth'
 import absoluteUrl from 'next-absolute-url'
 
+
 const TWELVE_DAYS_IN_MS = 12 * 60 * 60 * 24 * 1000
 
 const initAuth = () => {
@@ -62,7 +63,9 @@ const initAuth = () => {
     loginAPIEndpoint: '/api/login',
     logoutAPIEndpoint: '/api/logout',
     firebaseAdminInitConfig: {
+
       credential: {
+      
         projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
         clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
         // Using JSON to handle newline problems when storing the
@@ -81,7 +84,7 @@ const initAuth = () => {
       projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
     },
     cookies: {
-      name: 'ExampleApp',
+      name: 'TheSuperJoyfulApp',
       keys: [
         process.env.COOKIE_SECRET_CURRENT,
         process.env.COOKIE_SECRET_PREVIOUS,

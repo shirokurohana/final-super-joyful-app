@@ -206,7 +206,7 @@ const Todo = () => {
                             <Stack spacing={4} direction="row">
                               <IconButton onClick={() => updateTodo(item)} icon={<EditIcon />} />
                             
-                              <IconButton  ml={2} oonClick={() => deleteTodo(item.todoID)} icon={<DeleteIcon />} />
+                              <IconButton  ml={2} onClick={() => deleteTodo(item.todoID)} icon={<DeleteIcon />} />
                             </Stack>
                         </Flex>
                         </Flex>
