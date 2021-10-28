@@ -160,7 +160,7 @@ const Contact = () => {
                  <Input fontSize={{ base: "14px", md: "18px", lg: "20px" }} variant="flushed" type="first_name" value={inputFirstName} onChange={(e) => setFirstName(e.target.value)} placeholder="What's da first name?" />
                 <Input  fontSize={{ base: "14px", md: "18px", lg: "20px" }} variant="flushed" type="last_name" value={inputLastName} onChange={(e) => setLastName(e.target.value)} placeholder="What's da last name?" />
                 <Input fontSize={{ base: "14px", md: "18px", lg: "20px" }}  variant="flushed" type="phone_number" value={inputPhoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} placeholder="What's da phone number?" />
-                <Input variant="flushed" type="date" value={inputBirthdate} onChange={(e) => setBirthdate(e.target.value)} placeholder="When's the birthday?"/>
+                <Input variant="flushed" type="date" value={inputBirthdate} onChange={(e) => setBirthdate(e.target.value)} placeholder="When's da birthday?"/>
                 <Button
                       ml={12}
                       onClick={() => sendData()} style={{ marginLeft: '.5rem' }}
@@ -216,7 +216,7 @@ const Contact = () => {
                                           <PopoverHeader>My birthday is: {item?.contactBirthdate}</PopoverHeader>
                                           <PopoverCloseButton />
                                           <PopoverBody>
-                                            <Link href="tel:+" textDecoration="none">
+                                            <Link href={"tel:+" + item?.contactPhoneNumber} textDecoration="none">
                                          
                                           <Button leftIcon={<PhoneIcon />} color="white"
                                             fontWeight="bold"
@@ -238,7 +238,9 @@ const Contact = () => {
                                       </Stack>
                                   </Popover>
                               
-                                  <IconButton onClick={() => updateContact(item.contactID)} icon={<EditIcon />} />
+                                  <Link href={"/contacts/" + item.contactID}>
+                              <EditIcon />
+                            </Link>
                            
                                   <IconButton  ml={2} onClick={() => deleteContact(item.contactID)} icon={<DeleteIcon />} />
                               </Stack>

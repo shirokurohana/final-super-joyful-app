@@ -25,9 +25,8 @@ import { AddIcon, DeleteIcon, StarIcon, PhoneIcon, EditIcon, CalendarIcon } from
 
 const SingleEvent = ({itemData}) => {
 const AuthUser = useAuthUser();
-const [inputName, setInputName] = useState('')
-const [inputDate, setInputDate] = useState('')
-const [events, setEvents] = useState([])
+const [inputTodo, setTodo] = useState('')
+const [todos, setTodos] = useState([])
 
 return (
 
@@ -40,22 +39,17 @@ return (
                                 <ListItem fontSize={{ base: "18px", md: "20px", lg: "30px" }}>
                                 
                                   
-                                    {itemData?.name}
+                                    {itemData?.todo_name}
                                 </ListItem>
-                                <ListItem fontSize={{ base: "18px", md: "20px", lg: "30px" }}>
                                 
-                                  
-                                    {itemData?.date}
-                                </ListItem>
                             </List>
                           </Flex>
         <Stack width={{base: 'auto', sm: 'auto', md: 'auto'}}  pb={7} justifyContent="space-between"  spacing={4} direction={{base: 'column', md: 'row', sm:'column'}} alignItems="center">
             <AddIcon color="gray.300" />
-            <Input fontSize={{ base: "18px", md: "20px", lg: "30px" }} variant="flushed" type="first_name" value={inputName} onChange={(e) => setInputName(e.target.value)} placeholder="What's the event?" />
-                <Input variant="flushed" type="date" value={inputDate} onChange={(e) => setInputDate(e.target.value)} placeholder="When's da date?" style={{ marginLeft: '.5rem' }}/>
+            <Input fontSize={{ base: "18px", md: "20px", lg: "30px" }} variant="flushed" type="first_name" value={inputTodo} onChange={(e) => setTodo(e.target.value)} placeholder="What's da todo?" />
               <Button
                   ml={12}
-                 style={{ marginLeft: '.5rem' }}
+                  style={{ marginLeft: '.5rem' }}
               >
                   Update!
               </Button>
@@ -72,15 +66,15 @@ export const getServerSideProps = withAuthUserTokenSSR ({
     async ({ AuthUser, params }) => {
     // take this is id parameter from the url and construct a db query with it
     const db = getFirebaseAdmin().firestore();
-    const doc = await db.collection("my_events").doc(params.id).get();
+    const doc = await db.collection("my_todos").doc(params.id).get();
     let itemData;
     
     if (!doc.empty) {
       let docData = doc.data();
       itemData = {
         id: doc.id,
-        name: docData.name,
-        date: docData.date.toDate().toDateString()
+        todo_name: docData.todo
+
       };
     } else {
       // no document found

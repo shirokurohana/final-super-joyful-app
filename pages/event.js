@@ -3,6 +3,7 @@ import {
     Container,
     Flex,
     Heading,
+    Link,
     InputGroup,
     InputLeftElement,
     Input,
@@ -44,6 +45,7 @@ const Event = () => {
                     setEvents(snapshot.docs.map(
                       doc => {
                         return {
+                        
                           eventID: doc.id, 
                           eventName: doc.data().name,
                           eventDate: doc.data().date.toDate().toDateString()
@@ -166,7 +168,9 @@ const Event = () => {
                               </Flex>
                               <Flex direction={{base: 'column-reverse', md: 'row'}} p={7} align="left">
                               <Stack spacing={4} ml={7} direction="row">
-                                <IconButton onClick={() => updateEvent(item.eventID)} icon={<EditIcon />} />
+                              <Link href={"/events/" + item.eventID}>
+                              <EditIcon />
+                            </Link>
                               
                                 <IconButton  ml={2} onClick={() => deleteEvent(item.eventID)} icon={<DeleteIcon />} />
                               </Stack>

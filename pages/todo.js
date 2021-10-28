@@ -10,6 +10,7 @@ import {
     Button,
     Text,
     IconButton,
+    Link,
     Stack,
     Divider, 
     List, 
@@ -61,8 +62,7 @@ const Todo = () => {
                   snapshot => {
                     setTodos(snapshot.docs.map(
                       doc => {
-                        var itemData = {}
-                        return itemData = {
+                        return  {
                           todoID: doc.id, 
                           todo: doc.data().todo
                         }
@@ -175,7 +175,7 @@ const Todo = () => {
 
               <Stack width={{base: 'auto', sm: 'auto', md: 'auto'}}  pb={7} justifyContent="space-between"  spacing={4} direction={{base: 'column', md: 'row', sm:'column'}} alignItems="center">
               <AddIcon color="gray.300" />
-                <Input fontSize={{ base: "18px", md: "20px", lg: "30px" }} variant="flushed" type="first_name" value={inputTodo} onChange={(e) => setTodo(e.target.value)} placeholder="What's the todo?" />
+                <Input fontSize={{ base: "18px", md: "20px", lg: "30px" }} variant="flushed" type="first_name" value={inputTodo} onChange={(e) => setTodo(e.target.value)} placeholder="What's da todo?" />
                 <Button
                     ml={12}
                     onClick={() => sendData()} style={{ marginLeft: '.5rem' }}
@@ -204,8 +204,9 @@ const Todo = () => {
                             </Flex>
                             <Flex direction={{base: 'column-reverse', md: 'row'}} p={7} align="left">
                             <Stack spacing={4} direction="row">
-                              <IconButton onClick={() => updateTodo(item)} icon={<EditIcon />} />
-                            
+                            <Link href={"/todos/" + item?.todoID}>
+                              <EditIcon />
+                            </Link>
                               <IconButton  ml={2} onClick={() => deleteTodo(item.todoID)} icon={<DeleteIcon />} />
                             </Stack>
                         </Flex>
