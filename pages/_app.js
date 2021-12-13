@@ -1,6 +1,6 @@
 import React from 'react'
 import initAuth from '../utils/initAuth'
-import { ChakraProvider } from "@chakra-ui/react" // <- add this
+import {ChakraProvider} from "@chakra-ui/react" // <- add this
 
 
 initAuth()
@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
     <ChakraProvider> 
       <Component {...pageProps} />
     </ChakraProvider> // <- add this
-  )
+  );
 }
 
 export default MyApp

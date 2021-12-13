@@ -10,21 +10,23 @@
   },
   "dependencies": {
     "@chakra-ui/gatsby-plugin": "^2.0.1",
-    "@chakra-ui/icons": "^1.0.15",
-    "@chakra-ui/react": "^1.6.8",
+    "@chakra-ui/icons": "^1.1.1",
+    "@chakra-ui/react": "^1.7.3",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "confetti-js": "^0.0.18",
     "firebase": "^8.9.1",
     "firebase-admin": "^9.11.0",
     "framer-motion": "^4.1.17",
+    "got": "^9.6.0",
     "next": "^11.1.2",
     "next-absolute-url": "^1.2.2",
     "next-firebase-auth": "0.13.3",
     "react": "^17.0.2",
     "react-confetti": "^6.0.1",
     "react-dom": "^17.0.2",
-    "react-firebaseui": "^5.0.2"
+    "react-firebaseui": "^5.0.2",
+    "swr": "^1.1.1"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^11.1.0",

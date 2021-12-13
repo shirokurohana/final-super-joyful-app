@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from "react";
 import {
   useAuthUser,
   withAuthUser,
@@ -23,8 +23,9 @@ import {
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import Header from '../components/Header'
-import DemoPageLinks from '../components/DemoPageLinks'
 import { TimeIcon, PhoneIcon, CalendarIcon, StarIcon, CloseIcon, LockIcon, UnlockIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
+import { getSortedList } from './lib/data'
+import  useSWR from 'swr'
 
 const styles = {
   content: {
@@ -35,7 +36,18 @@ const styles = {
   }
 }
 
-const Demo = () => {
+
+export async function getStaticProps() {
+  const allData = await getSortedList();
+  return {
+    props: {
+      allData
+    },
+    revalidate: 60
+  }
+}
+
+const Demo = ({allData}) => {
   const AuthUser = useAuthUser()
   return (
     <div className="background">
@@ -89,6 +101,7 @@ const Demo = () => {
 
           <Button leftIcon={<PhoneIcon />} color="white"
             fontWeight="bold"
+            style={{ marginBottom: "10px" }}
             variant="outline"
             borderRadius="md"
             textDecoration="none"
@@ -102,12 +115,36 @@ const Demo = () => {
 
         </Link>
         </p>
+        <Heading style={{ fontSize: "20px" }} style={{ marginBottom: "10px" }}  bgGradient="linear(to-r, #575aff, #c7f8ff)"
+                                    bgClip="text">All WordPress Posts </Heading>
+          {allData.map(({ id, name }) => (
+            <div  key={id}>
+        
+        <h4 spacing={2} fontWeight="bold"> {name}</h4>
+                
+                  <Link href={`/wordpress/${id}`}>
+                  <Button style={{ marginBottom: "10px" }}  color="white"
+            fontWeight="bold"
+            variant="outline"
+            borderRadius="md"
+            textDecoration="none"
+            py={17}
+            bgGradient="linear(to-r, #575aff, #575aff)"
+            _hover={{
+              bgGradient: "linear(to-r, #c7f8ff, #c77cc)",
+            }}  >
+          Read me!
+        </Button>
+                  </Link>
+                </div>
+         
+     
+          ))}
+        </div>
         </div>
       </div>
-    </div>
+   
   )
 }
-
-export const getServerSideProps = withAuthUserTokenSSR()()
 
 export default withAuthUser()(Demo)

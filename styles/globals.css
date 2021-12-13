@@ -1,4 +1,116 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+html,
+body {
+  background-color: #6b70ff;
+  
+  font-family: 'Poppins', sans-serif;
+}
+#__next {
+  background: hsla(238, 100%, 71%, 1);
+
+background: linear-gradient(90deg, #6b70ff 0%, hsla(295, 100%, 84%, 1) 100%);
+
+background: -moz-linear-gradient(90deg, #9698d3 0%, hsla(295, 100%, 84%, 1) 100%);
+
+background: -webkit-linear-gradient(90deg, hsla(238, 100%, 71%, 1) 0%, #f8adff 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#696EFF", endColorstr="#F8ACFF", GradientType=1 );
+}
+
+.btn.btn-primary{
+  background-color: #6b70ff;
+  
+}
+
+.pretty, .btn.btn-info.mt-4.back-home{
+  color:#4247e6;
+}
+
+.btn.btn-info {
+  background-color: #f8adff;
+  color: white;
+  border-color:hsla(295, 100%, 84%, 1);
+  margin-right: 10px;
+}
+
+.btn.btn-primary:hover, .btn.btn-info:hover{
+  transform: scale(120%);
+  transition: all 0.5s ease-in-out;
+}
+.card, .card:hover {
+  margin-left: 7px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  /* credits to KLove - inspiration from KLove.com: https://www.klove.com/music */
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+
+
+html,
+body {
+  background-color: #6b70ff;
+  
+  font-family: 'Poppins', sans-serif;
+}
+#__next {
+  background: hsla(238, 100%, 71%, 1);
+
+background: linear-gradient(90deg, #6b70ff 0%, hsla(295, 100%, 84%, 1) 100%);
+
+background: -moz-linear-gradient(90deg, #9698d3 0%, hsla(295, 100%, 84%, 1) 100%);
+
+background: -webkit-linear-gradient(90deg, hsla(238, 100%, 71%, 1) 0%, #f8adff 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#696EFF", endColorstr="#F8ACFF", GradientType=1 );
+}
+
+.btn.btn-primary{
+  background-color: #6b70ff;
+  
+}
+
+.pretty, .btn.btn-info.mt-4.back-home{
+  color:#4247e6;
+}
+
+.btn.btn-info {
+  background-color: #f8adff;
+  color: white;
+  border-color:hsla(295, 100%, 84%, 1);
+  margin-right: 10px;
+}
+
+.btn.btn-primary:hover, .btn.btn-info:hover{
+  transform: scale(120%);
+  transition: all 0.5s ease-in-out;
+}
+.card, .card:hover {
+  margin-left: 7px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  /* credits to KLove - inspiration from KLove.com: https://www.klove.com/music */
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+
 html {
   padding: 0;
   margin: 0;
@@ -31,3 +143,5 @@ a {
 * {
   box-sizing: border-box;
 }
+
+
