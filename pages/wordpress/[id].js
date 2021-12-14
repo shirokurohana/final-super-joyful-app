@@ -1,5 +1,5 @@
 import { Link }  from 'next/link';
-import { getAllIds, getData } from '../lib/data';
+import { getAllIds, getData } from '../../lib/data';
 import Header from '../../components/Header'
 import { useAuthUser } from 'next-firebase-auth';
 import React from 'react'
