@@ -10,8 +10,9 @@ const config = {
             http: false,
             stream: false,
             https: false,
-            tls: 'empty',
-            net: 'empty'
+            path: false,
+            tls: false,
+            net: false
         }
     }
 
