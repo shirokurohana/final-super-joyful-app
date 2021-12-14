@@ -147,4 +147,5 @@ const Demo = ({allData}) => {
   )
 }
 
+export const getServerSideProps = withAuthUserTokenSSR()()
 export default withAuthUser()(Demo)
