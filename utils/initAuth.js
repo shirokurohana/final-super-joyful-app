@@ -1,7 +1,7 @@
 /* globals window */
+// all credits to the gladly-team for next-firebase-auth: https://github.com/gladly-team/next-firebase-auth/blob/main/example/utils/initAuth.js
 import { init } from 'next-firebase-auth'
 import absoluteUrl from 'next-absolute-url'
-
 
 const TWELVE_DAYS_IN_MS = 12 * 60 * 60 * 24 * 1000
 
@@ -63,9 +63,7 @@ const initAuth = () => {
     loginAPIEndpoint: '/api/login',
     logoutAPIEndpoint: '/api/logout',
     firebaseAdminInitConfig: {
-
       credential: {
-      
         projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
         clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
         // Using JSON to handle newline problems when storing the
@@ -84,7 +82,7 @@ const initAuth = () => {
       projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
     },
     cookies: {
-      name: 'TheSuperJoyfulApp',
+      name: 'ExampleApp',
       keys: [
         process.env.COOKIE_SECRET_CURRENT,
         process.env.COOKIE_SECRET_PREVIOUS,
@@ -93,7 +91,7 @@ const initAuth = () => {
       maxAge: TWELVE_DAYS_IN_MS,
       overwrite: true,
       path: '/',
-      sameSite: 'strict',
+      sameSite: 'lax',
       secure: process.env.NEXT_PUBLIC_COOKIE_SECURE === 'true',
       signed: true,
     },
