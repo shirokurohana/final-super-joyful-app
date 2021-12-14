@@ -145,7 +145,6 @@ const Demo = ({allData}) => {
       </div>
    
   )
-}
+          }
 
-export const getServerSideProps = withAuthUserTokenSSR()()
-export default withAuthUser()(Demo)
+export default (Demo)
