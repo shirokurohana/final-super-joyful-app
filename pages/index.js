@@ -24,7 +24,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import Header from '../components/Header'
 import { TimeIcon, PhoneIcon, CalendarIcon, StarIcon, CloseIcon, LockIcon, UnlockIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
-import { getSortedList } from './lib/data'
+import { getSortedList } from '../lib/data'
 import  useSWR from 'swr'
 
 const styles = {
